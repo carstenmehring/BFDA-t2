@@ -9,7 +9,7 @@
 # ES = dz (standardized difference scores)
 sample.t2.paired <- function(n, ES, options.sample=NULL) {
 	x <- rnorm(n, ES, sd=1)
-	y <- rnorm(n, ES, sd=1)
+	y <- rnorm(n, -ES, sd=1)
 	return(cbind(x, y))
 }
 
