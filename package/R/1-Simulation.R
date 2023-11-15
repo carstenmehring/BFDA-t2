@@ -51,7 +51,7 @@ BFDA.sim <- function(expected.ES, type=c("t.between", "t.paired", "correlation",
 
 	design <- match.arg(design, c("sequential", "fixed.n"))
 
-	type <- match.arg(type, c("t.between", "t.paired", "correlation", "abtest"))
+	type <- match.arg(type, c("t.between", "t.paired", "correlation", "abtest", "t2.paired"))
 
 	prior <- prior.check.function(prior)
 	
