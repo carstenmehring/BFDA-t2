@@ -131,6 +131,7 @@ BFDA.sim <- function(expected.ES, type=c("t.between", "t.paired", "correlation",
 
 				# do the BF test; supply freq.test to access t.value for faster computation
 				logBF <- BF.test.function(samp, alternative, freq.test, prior, ...)
+				print(logBF)
 					
 				res0[which(ns == n), ] <- c(
 					id		= batch*10^(floor(log(max_b, base=10))+2) + b,		# id is a unique id for each trajectory
