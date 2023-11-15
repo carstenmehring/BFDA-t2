@@ -9,7 +9,7 @@
 # ES = dz (standardized difference scores)
 sample.t2.paired <- function(n, ES, options.sample=NULL) {
 	x <- rnorm(n, ES, sd=1)
-	y <- rnorm(n, -ES, sd=1)
+	y <- rnorm(n, ES, sd=1)
 	return(cbind(x, y))
 }
 
@@ -103,7 +103,7 @@ BF.test.t2.paired <- function(SAMP, alternative=NULL, freq.test=NULL, prior=NULL
 	d1=SAMP[,1];
 	d2=SAMP[,2];
 	mlm <- lm(cbind(d1,d2) ~ -1 + ones)
-	BFmlm <- BF(mlm,hypothesis="ones_on_d1>0 & ones_on_d2<0")
+	BFmlm <- BF(mlm,hypothesis="ones_on_d1>0 & ones_on_d2>0")
 
 	# returns the log(BF10)
 	return(as.numeric(log(BFmlm$BFmatrix_confirmatory[2,1])))
