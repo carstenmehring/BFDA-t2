@@ -8,7 +8,9 @@
 # get two samples with a specific standardized mean differences
 # ES = dz (standardized difference scores)
 sample.t2.paired <- function(n, ES, options.sample=NULL) {
-	rnorm(n, ES, sd=1)
+	x <- rnorm(n, ES, sd=1)
+	y <- rnorm(n, ES, sd=1)
+	return(cbind(x, y))
 }
 
 # ---------------------------------------------------------------------
@@ -16,7 +18,7 @@ sample.t2.paired <- function(n, ES, options.sample=NULL) {
 # the data frame/ matrix that was simulated with sample.function
 
 select.t2.paired <- function(MAXSAMP, n) {
-	return(MAXSAMP[1:n])
+	return(MAXSAMP[1:n, ])
 }
 
 
@@ -25,7 +27,7 @@ select.t2.paired <- function(MAXSAMP, n) {
 
 freq.test.t2.paired <- function(SAMP, alternative=NULL, options.sample=NULL) {
 
-	t1 <- t.test(SAMP, mu=0, alternative=alternative)
+	t1 <- t.test(SAMP[:,1], mu=0, alternative=alternative)
 
 	# see http://journal.frontiersin.org/article/10.3389/fpsyg.2013.00863/full
 
@@ -97,6 +99,17 @@ prior.check.t2.paired <- function(prior=NULL){
 
 BF.test.t2.paired <- function(SAMP, alternative=NULL, freq.test=NULL, prior=NULL, ...) {
 
+ones <- rep(1,length(data$T1.FR1_baseline))
+b1=data$T1.FR1_baseline
+c1=data$T1.FR1_control
+d1=c1-b1
+b2=data$T2.FR2_baseline
+c2=data$T2.FR2_control
+d2=c2-b2
+
+mlm <- lm(cbind(d1,d2) ~ -1 + ones)
+BFmlm <- BF(mlm,hypothesis="ones_on_d1>0 & ones_on_d2<0")
+	
   if (alternative=="greater") {
     alt2 <- "BFplus0"
   } else if (alternative=="two.sided"){
