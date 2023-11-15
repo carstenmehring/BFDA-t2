@@ -203,7 +203,7 @@ print.BFDA <- function(x, ...) {
 		"t.paired" = "Cohen's d",
 		"correlation" = "correlation",
 		"abtest" = x$settings$options.sample,
-		"t2.paired" = "Cohen's d"
+		"t2.paired" = "Cohen's d",
 		{paste0("ERROR: Test type ", x$settings$type, " not recognized.")}	#default
 	)
 	
