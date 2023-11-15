@@ -114,6 +114,7 @@ BF.test.t2.paired <- function(SAMP, alternative=NULL, freq.test=NULL, prior=NULL
 	if (BF10<1e-20) {
 		BF10<-1e-20
 	}
+	message(paste("Hello"))
 	print(BF10)
 	flush.console()
 	return(as.numeric(log(BF10)))
