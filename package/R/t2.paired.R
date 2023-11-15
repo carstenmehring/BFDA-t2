@@ -99,42 +99,13 @@ prior.check.t2.paired <- function(prior=NULL){
 
 BF.test.t2.paired <- function(SAMP, alternative=NULL, freq.test=NULL, prior=NULL, ...) {
 
-ones <- rep(1,length(data$T1.FR1_baseline))
-b1=data$T1.FR1_baseline
-c1=data$T1.FR1_control
-d1=c1-b1
-b2=data$T2.FR2_baseline
-c2=data$T2.FR2_control
-d2=c2-b2
+	ones <- rep(1,nrow(SAMP))
+	d1=SAMP[,1];
+	d2=SAMP[,2];
+	mlm <- lm(cbind(d1,d2) ~ -1 + ones)
+	BFmlm <- BF(mlm,hypothesis="ones_on_d1>0 & ones_on_d2<0")
 
-mlm <- lm(cbind(d1,d2) ~ -1 + ones)
-BFmlm <- BF(mlm,hypothesis="ones_on_d1>0 & ones_on_d2<0")
-	
-  if (alternative=="greater") {
-    alt2 <- "BFplus0"
-  } else if (alternative=="two.sided"){
-    alt2 <- "BF10"
-  } else if (alternative=="less"){
-    alt2 <- "BFmin0"
-  }
-
-  if(prior[[1]] == "Cauchy"){
-    
-    t1 <- bf10_t(t = as.numeric(freq.test$statistic), n1 = length(SAMP), independentSamples = FALSE, prior.location = prior[[2]][["prior.location"]],
-                 prior.scale = prior[[2]][["prior.scale"]], prior.df = 1)
-    
-  } else if (prior[[1]] == "t") {
-    
-    t1 <- bf10_t(t = as.numeric(freq.test$statistic), n1 = length(SAMP), independentSamples = FALSE, prior.location = prior[[2]][["prior.location"]],
-                 prior.scale = prior[[2]][["prior.scale"]], prior.df = prior[[2]][["prior.df"]])
-    
-  } else if (prior[[1]] == "normal") {
-    
-    
-    t1 <- bf10_normal(t = as.numeric(freq.test$statistic), n1=length(SAMP), independentSamples = FALSE,
-                      prior.mean = prior[[2]][["prior.mean"]], prior.variance = prior[[2]][["prior.variance"]])
-  }
-	
 	# returns the log(BF10)
-	return(as.numeric(log(t1[[alt2]])))
+	return(as.numeric(log(BFmlm$BFmatrix_confirmatory[2,1])))
+
 }
