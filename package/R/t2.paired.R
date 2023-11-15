@@ -27,7 +27,7 @@ select.t2.paired <- function(MAXSAMP, n) {
 
 freq.test.t2.paired <- function(SAMP, alternative=NULL, options.sample=NULL) {
 
-	t1 <- t.test(SAMP[:,1], mu=0, alternative=alternative)
+	t1 <- t.test(SAMP[,1], mu=0, alternative=alternative)
 
 	# see http://journal.frontiersin.org/article/10.3389/fpsyg.2013.00863/full
 
