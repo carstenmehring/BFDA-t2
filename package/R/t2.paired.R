@@ -8,8 +8,8 @@
 # get two samples with a specific standardized mean differences
 # ES = dz (standardized difference scores)
 sample.t2.paired <- function(n, ES, options.sample=NULL) {
-	x <- rnorm(n, ES, sd=1)
-	y <- rnorm(n, -ES, sd=1)
+	x <- rnorm(n, ES[1], sd=1)
+	y <- rnorm(n, ES[2], sd=1)
 	return(cbind(x, y))
 }
 
