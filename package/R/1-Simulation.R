@@ -37,7 +37,7 @@
 #'}
 
 
-BFDA.sim <- function(expected.ES, type=c("t.between", "t.paired", "correlation", "abtest"), prior = NULL, n.min=10, n.max=500, design=c("sequential", "fixed.n"), boundary=Inf, B=1000, stepsize=NA, alternative=c("two.sided", "greater", "less"), verbose=TRUE, cores=1, ETA=FALSE, options.sample=list(), seed=1234, ...) {
+BFDA.sim <- function(expected.ES, type=c("t.between", "t.paired", "correlation", "abtest", "t2.paired"), prior = NULL, n.min=10, n.max=500, design=c("sequential", "fixed.n"), boundary=Inf, B=1000, stepsize=NA, alternative=c("two.sided", "greater", "less"), verbose=TRUE, cores=1, ETA=FALSE, options.sample=list(), seed=1234, ...) {
   
 	# link to test specific functions
 	# get() can reference a function by its (string) name
