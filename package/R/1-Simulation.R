@@ -160,7 +160,8 @@ BFDA.sim <- function(expected.ES, type=c("t.between", "t.paired", "correlation",
 		end <- Sys.time()
 		print(paste0("Simulation finished at ", end))
 		cat("Duration: "); print(end - start)
-
+		print("Hello:")
+		print(logBF)
 	}
 	
 	res <- list(
