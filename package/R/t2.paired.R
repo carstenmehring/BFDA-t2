@@ -48,15 +48,15 @@ select.t2.paired <- function(MAXSAMP, n) {
 
 freq.test.t2.paired <- function(SAMP, alternative=NULL, options.sample=NULL) {
 
-	t1 <- t.test(SAMP[,1], mu=0, alternative=alternative)
+	#t1 <- t.test(SAMP[,1], mu=0, alternative=alternative)
 
 	# see http://journal.frontiersin.org/article/10.3389/fpsyg.2013.00863/full
 
 	# must returns these values
 	return(list(
-		statistic = t1$statistic,
-		p.value = t1$p.value,
-		emp.ES = t1$statistic / sqrt(length(SAMP))
+		statistic = 0,
+		p.value = -1,
+		emp.ES = -1)
 	))
 }
 
