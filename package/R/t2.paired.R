@@ -124,21 +124,14 @@ BF.test.t2.paired <- function(SAMP, alternative=NULL, freq.test=NULL, prior=NULL
 	d1=SAMP[,1];
 	d2=SAMP[,2];
 	mlm <- lm(cbind(d1,d2) ~ -1 + ones)
-	BFmlm <- BF(mlm,hypothesis="ones_on_d1>0 & ones_on_d2<0")
+	BFmlm <- BF(mlm,hypothesis="ones_on_d1>0 & ones_on_d2<0",log=TRUE)
 
 	# returns the log(BF10)
 
-	BF10<-BFmlm$BFmatrix_confirmatory[1,2]
-	if (is.infinite(BF10) || BF10>1e20) {
-		BF10<-1e20
-	}
-	if (BF10<0) {
-		return(NaN)
-	}
-	if (BF10<1e-20) {
-		BF10<-1e-20
-	}
+	return(BFmlm$BFmatrix_confirmatory[1,2])
+
+
 	
-	return(as.numeric(log(BF10)))
+#	return(as.numeric(log(BF10)))
 
 }
