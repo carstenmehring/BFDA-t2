@@ -128,7 +128,7 @@ BF.test.t2.paired <- function(SAMP, alternative=NULL, freq.test=NULL, prior=NULL
 		BF10<-1e20
 	}
 	if (BF10<0) {
-		return(as.numeric(nan))
+		return(NaN)
 	}
 	if (BF10<1e-20) {
 		BF10<-1e-20
