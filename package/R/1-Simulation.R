@@ -97,7 +97,6 @@ BFDA.sim <- function(expected.ES, type=c("t.between", "t.paired", "correlation",
 	## THE SIMULATION
 	## ======================================================================
 
-	nSim <- 0
 	nNegBF <- 0
 	
 	start <- Sys.time()
@@ -133,8 +132,7 @@ BFDA.sim <- function(expected.ES, type=c("t.between", "t.paired", "correlation",
 				freq.test <- freq.test.function(samp, alternative, options.sample)
 
 				# do the BF test; supply freq.test to access t.value for faster computation
-				logBF <- BF.test.function(samp, alternative, freq.test, prior, ...)				
-				nSim <- nSim + 1
+				logBF <- BF.test.function(samp, alternative, freq.test, prior, ...)								
 				
 				res0[which(ns == n), ] <- c(
 					id		= batch*10^(floor(log(max_b, base=10))+2) + b,		# id is a unique id for each trajectory
@@ -143,7 +141,8 @@ BFDA.sim <- function(expected.ES, type=c("t.between", "t.paired", "correlation",
 					logBF	= logBF,
 					emp.ES	= freq.test$emp.ES,
 					statistic = freq.test$statistic,
-					p.value	= freq.test$p.value)
+					p.value	= freq.test$p.value,
+					negBF   = negBF)
 
 				# if boundary is hit: stop sampling in this trajectory
 				if (logBF<=logBoundary[1] | logBF >= logBoundary[2]) {break;}
@@ -164,7 +163,6 @@ BFDA.sim <- function(expected.ES, type=c("t.between", "t.paired", "correlation",
 		end <- Sys.time()
 		print(paste0("Simulation finished at ", end))
 		cat("Duration: "); print(end - start)
-		print("Hello:")
 	}
 	
 	res <- list(
@@ -180,9 +178,7 @@ BFDA.sim <- function(expected.ES, type=c("t.between", "t.paired", "correlation",
 			extra = list(...),
 			packageVersion = packageVersion("BFDA")
 		),
-		sim=sim,
-		numSim=nSim,
-		numNegBF=nNegBF
+		sim=sim
 	)
 	class(res) <- "BFDA"
 	return(res)
