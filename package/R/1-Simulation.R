@@ -142,7 +142,7 @@ BFDA.sim <- function(expected.ES, type=c("t.between", "t.paired", "correlation",
 					emp.ES	= freq.test$emp.ES,
 					statistic = freq.test$statistic,
 					p.value	= freq.test$p.value,
-					negBF   = 2)
+					negBF   = logBF)
 
 				# if boundary is hit: stop sampling in this trajectory
 				if (logBF<=logBoundary[1] | logBF >= logBoundary[2]) {break;}
