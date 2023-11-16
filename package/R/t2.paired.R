@@ -130,7 +130,7 @@ BF.test.t2.paired <- function(SAMP, alternative=NULL, freq.test=NULL, prior=NULL
 
 	logBF<-BFmlm$BFmatrix_confirmatory[1,2]
 	if (is.infinite(logBF)) {
-		logBF<-40
+		logBF<-sign(logBF)*40
 	}
 	return(logBF)
 	
