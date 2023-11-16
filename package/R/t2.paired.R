@@ -128,8 +128,7 @@ BF.test.t2.paired <- function(SAMP, alternative=NULL, freq.test=NULL, prior=NULL
 		BF10<-1e20
 	}
 	if (BF10<0) {
-		nNegBF <- get("nNegBF", env=parent.frame())
-		nNegBF <- nNegBF + 1
+		return(as.numeric(nan))
 	}
 	if (BF10<1e-20) {
 		BF10<-1e-20
