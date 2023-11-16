@@ -124,7 +124,7 @@ BF.test.t2.paired <- function(SAMP, alternative=NULL, freq.test=NULL, prior=NULL
 	d1=SAMP[,1];
 	d2=SAMP[,2];
 	mlm <- lm(cbind(d1,d2) ~ -1 + ones)
-	BFmlm <- BF(mlm,hypothesis="ones_on_d1>0 & ones_on_d2<0",log=TRUE)
+	BFmlm <- BF(mlm,hypothesis="ones_on_d1>0 & ones_on_d2<0; ones_on_d1=0 & ones_on_d2=0",complement=FALSE,log=TRUE)
 
 	# returns the log(BF10)
 
