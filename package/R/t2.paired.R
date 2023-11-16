@@ -56,7 +56,7 @@ freq.test.t2.paired <- function(SAMP, alternative=NULL, options.sample=NULL) {
 	return(list(
 		statistic = 0,
 		p.value = -1,
-		emp.ES = -1)
+		emp.ES = -1
 	))
 }
 
