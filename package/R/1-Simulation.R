@@ -135,7 +135,7 @@ BFDA.sim <- function(expected.ES, type=c("t.between", "t.paired", "correlation",
 				logBF <- BF.test.function(samp, alternative, freq.test, prior, ...)								
 
 				if (is.nan(logBF)) {
-					logBF <- -20
+					logBF <- 20
 					negBF <- 1
 				} else {
 					negBF <- 0
