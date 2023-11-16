@@ -126,6 +126,10 @@ BFDA.sim <- function(expected.ES, type=c("t.between", "t.paired", "correlation",
 
 			# increase sample size up to n.max (or only use n.max if design=="fixed.n")
 			for (n in ns) {
+				print("n:")
+				print(n)
+				print(nrows(maxsamp))
+				
 				samp <- select.function(maxsamp, n)
 				
 				# do the frequentist test
