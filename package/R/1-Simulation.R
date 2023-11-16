@@ -109,7 +109,7 @@ BFDA.sim <- function(expected.ES, type=c("t.between", "t.paired", "correlation",
 		res.counter <- 1
 
 		# res saves the statistics at each step
-		res <- matrix(NA, nrow=length(ns)*max_b, ncol=7, dimnames=list(NULL, c("id", "true.ES", "n", "logBF", "emp.ES", "statistic", "p.value", "negBF")))
+		res <- matrix(NA, nrow=length(ns)*max_b, ncol=8, dimnames=list(NULL, c("id", "true.ES", "n", "logBF", "emp.ES", "statistic", "p.value", "negBF")))
 
 		# run max_b iterations in each parallel worker
 		for (b in 1:max_b) {
