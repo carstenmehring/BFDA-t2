@@ -180,8 +180,8 @@ BFDA.sim <- function(expected.ES, type=c("t.between", "t.paired", "correlation",
 			extra = list(...),
 			packageVersion = packageVersion("BFDA")
 		),
-		sim=sim
-		numSim=nSim
+		sim=sim,
+		numSim=nSim,
 		numNegBF=nNegBF
 	)
 	class(res) <- "BFDA"
