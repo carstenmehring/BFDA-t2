@@ -21,7 +21,12 @@ sample.t2.paired <- function(n, ES, options.sample=NULL) {
 	} else if (options.sample[[1]]=='NW') {
 		l1 <- -1
 		l2 <- 1
-	}		
+	} else if (options.sample[[1]]=='C') {
+		X <- cbind( c(-1,0,1), c(-1,0,1) )
+		a <- sample(1:3,size=n,replace=TRUE)
+		l1 <- X[a,1]
+		l2 <- X[a,2]
+	}
 	
 	x <- rnorm(n, l1*ES, sd=1)
 	y <- rnorm(n, l2*ES, sd=1)
