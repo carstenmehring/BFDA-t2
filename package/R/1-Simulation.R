@@ -126,9 +126,10 @@ BFDA.sim <- function(expected.ES, type=c("t.between", "t.paired", "correlation",
 
 			# increase sample size up to n.max (or only use n.max if design=="fixed.n")
 			for (n in ns) {
-				print("n:")
+				message("n:")
 				print(n)
 				print(nrows(maxsamp))
+				flush.console()
 				
 				samp <- select.function(maxsamp, n)
 				
@@ -139,6 +140,7 @@ BFDA.sim <- function(expected.ES, type=c("t.between", "t.paired", "correlation",
 				logBF <- BF.test.function(samp, alternative, freq.test, prior, ...)	
 				print("logBf:")
 				print(logBF)
+				flush.console()
 				
 				res0[which(ns == n), ] <- c(
 					id		= batch*10^(floor(log(max_b, base=10))+2) + b,		# id is a unique id for each trajectory
