@@ -8,12 +8,24 @@
 # get two samples with a specific standardized mean differences
 # ES = dz (standardized difference scores)
 sample.t2.paired <- function(n, ES, options.sample=NULL) {	
-	x <- rnorm(n, ES, sd=1)
-	if (options.sample[[1]]=="neg2") {
-		y <- rnorm(n, -ES, sd=1)
-	} else {
-		y <- rnorm(n, ES, sd=1)
-	}
+
+	if (options.sample[[1]]=='NE') {
+		l1 <- 1
+		l2 <- 1
+	} else if (options.sample[[1]]=='SE') {
+		l1 <- 1
+		l2 <- -1
+	} else if (options.sample[[1]]=='SW') {
+		l1 <- -1
+		l2 <- -1
+	} else if (options.sample[[1]]=='NW') {
+		l1 <- -1
+		l2 <- 1
+	}		
+	
+	x <- rnorm(n, l1*ES, sd=1)
+	y <- rnorm(n, l2*ES, sd=1)
+	
 	return(cbind(x, y))
 }
 
@@ -112,15 +124,13 @@ BF.test.t2.paired <- function(SAMP, alternative=NULL, freq.test=NULL, prior=NULL
 	# returns the log(BF10)
 
 	BF10<-BFmlm$BFmatrix_confirmatory[1,2]
-	if (is.infinite(BF10)) {
+	if (is.infinite(BF10) || BF10>1e20) {
 		BF10<-1e20
 	}
 	if (BF10<1e-20) {
 		BF10<-1e-20
 	}
-	message(paste("Hello"))
-	print(BF10)
-	flush.console()
+	
 	return(as.numeric(log(BF10)))
 
 }
