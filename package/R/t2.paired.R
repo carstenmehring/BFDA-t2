@@ -128,9 +128,11 @@ BF.test.t2.paired <- function(SAMP, alternative=NULL, freq.test=NULL, prior=NULL
 
 	# returns the log(BF10)
 
-	return(BFmlm$BFmatrix_confirmatory[1,2])
-
-
+	logBF<-BFmlm$BFmatrix_confirmatory[1,2]
+	if (is.infinite(logBF)) {
+		logBF<-40
+	}
+	return(logBF)
 	
 #	return(as.numeric(log(BF10)))
 
