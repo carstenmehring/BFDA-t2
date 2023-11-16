@@ -128,7 +128,7 @@ BFDA.sim <- function(expected.ES, type=c("t.between", "t.paired", "correlation",
 			for (n in ns) {
 				message("n:")
 				print(n)
-				print(nrows(maxsamp))
+				print(dim(maxsamp))
 				flush.console()
 				
 				samp <- select.function(maxsamp, n)
